@@ -21,7 +21,9 @@ MODULATOR_INDEX = 2
 FM_AMP = 0.5
 
 
-MIN_DURATION = 5  #minimum duration of each r2d2 audio
-MAX_DURATION = 20  #maximum duration of each r2d2 audio
+MIN_DURATION = 15 #45  #minimum duration of each r2d2 audio
+MAX_DURATION = 60 #180  #maximum duration of each r2d2 audio
 
-NUM_SOUNDS = 300 # number of audios to generate
+NUM_SOUNDS = 100 # number of audios to generate
+OUTPUT_DIR = "../data/r2d2"
+

@@ -92,22 +92,26 @@ def generate_r2d2_dataset(
         os.makedirs(output_dir)
     for i in tqdm(range(num_sounds), desc="Generating R2D2 sounds..."):
         duration = np.random.randint(min_duration, max_duration)
-        generator = R2D2SoundGenerator(duration=duration, sample_rate=sample_rate)
-        filename = f"{base_filename}_{i+1}.wav"
-        generator.generate_sound(filename)
+        try:
+            generator = R2D2SoundGenerator(duration=duration, sample_rate=sample_rate)
+            filename = f"{base_filename}_{i+1}.wav"
+            generator.generate_sound(filename)
+        except Exception as e:
+            print(f"Error generating sound {i+1}: {e}")
+            continue
 
+    print("R2D2 sound dataset generated successfully!")
 # Usage
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--num_sounds", type=int, default=params.NUM_SOUNDS, help="Number of sounds to generate")
     parser.add_argument("--output_dir", type=str, default=params.OUTPUT_DIR, help="Output directory")
-    parser.add_argument("--base_filename", type=str, default=params.BASE_FILENAME, help="Sound filename")
+    parser.add_argument("--base_filename", type=str, default="r2d2", help="Sound filename")
     parser.add_argument("--min_duration", type=int, default=params.MIN_DURATION, help="Minimum duration of a sound")
     parser.add_argument("--max_duration", type=int, default=params.MAX_DURATION, help="Maximum duration of a sound")
     parser.add_argument("--sample_rate", type=int, default=params.SAMPLE_RATE, help="Sample rate")
 
     args = parser.parse_args()
-
 
     generate_r2d2_dataset(
         args.num_sounds, 
