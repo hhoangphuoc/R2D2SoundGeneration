@@ -62,15 +62,16 @@ def generate_r2d2_sound(
     beep_start_times = np.random.uniform(0, length - max(beep_durations), num_beeps)
 
     # Apply Random Line Slider
-    carrier_freq = random_line_slide(length=length, sample_rate=sample_rate)  # adjusted to influence the overall pitch of the sound
-    modulation_index = random_line_slide(length=length, sample_rate=sample_rate)
-    modulator_freq = random_line_slide(length=length, sample_rate=sample_rate)
+    carrier_level = random_line_slide(length=length, sample_rate=sample_rate) * 1  # adjusted to influence the overall pitch of the sound
+    carrier_freq = random_line_slide(length=length, sample_rate=sample_rate) * 1000  # adjusted to influence the overall pitch of the sound
+    modulation_index = random_line_slide(length=length, sample_rate=sample_rate) * 2
+    modulator_freq = random_line_slide(length=length, sample_rate=sample_rate) * 32
 
     # add random line slide to patch amplitude
     amplitude = random_line_slide(length, sample_rate) * amplitude_scale  # Scale amplitude
     
     # Apply FM synthesis
-    audio = fm_synthesis(amplitude, carrier_freq, modulation_index, modulator_freq, length, sample_rate)
+    audio = fm_synthesis(carrier_level, carrier_freq, modulation_index, modulator_freq, length, sample_rate)
 
 
     # Add beeps

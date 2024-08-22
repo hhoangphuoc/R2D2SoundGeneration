@@ -25,7 +25,14 @@ def random_line_slide(length, sample_rate=16000):
 
     return slider
 
-def fm_synthesis(amplitude, carrier_freq, modulation_index, modulator_freq, length, sample_rate=16000):
+def fm_synthesis(
+    carrier_level, 
+    carrier_freq, 
+    modulation_index, 
+    modulator_freq, 
+    length, 
+    sample_rate=16000
+    ):
     """Generates an FM synthesis sound.
 
     Args:

@@ -7,7 +7,7 @@ This is a sub-project that aims at generation a R2D2-alike sound dataset
 The following packages is required to run the code:
 
 ```
-numpy scipy librosa
+numpy scipy pyo tqdm
 ```
 
 ## Generating Process
